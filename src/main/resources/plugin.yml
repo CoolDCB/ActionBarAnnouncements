@@ -1,0 +1,4 @@
+name: ActionBarAnnouncements
+version: '${project.version}'
+main: me.dave.actionbarannouncements.ActionBarAnnouncements
+api-version: 1.19

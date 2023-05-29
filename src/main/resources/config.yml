@@ -1,0 +1,20 @@
+# Whether the plugin will send action bar announcements
+enabled: true
+# Go through the announcement list in a random order
+random-order: false
+# Time (in seconds) between announcements
+interval: 20
+# List of announcements
+announcements:
+  # Announcements for unspecified worlds
+  global:
+    - Welcome to the server
+    - Have a great time %player%
+    - There are currently %online% players online!
+  world:
+    - The overworld is a fun place
+    - Do /help for help!
+# Send an announcement when the player joins the server
+send-on-join: false
+# If the above is enabled this message will be sent to players when they join
+join-announcement: "Welcome to the server %player% :)"
