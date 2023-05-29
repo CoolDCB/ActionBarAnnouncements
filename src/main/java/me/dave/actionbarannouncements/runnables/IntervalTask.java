@@ -22,10 +22,11 @@ public class IntervalTask implements Runnable {
                 messages = ActionBarAnnouncements.getConfigManager().getGlobalAnnouncements();
                 if (messages.isEmpty()) return;
             }
-            String message = randomize ? getRandomFromList(messages) : messages.get(index);
+            String message = randomize ? getRandomFromList(messages) : messages.get(index % messages.size());
 
             List<Player> players = world.getPlayers();
             if (players.isEmpty()) return;
+            players.removeAll(ActionBarAnnouncements.getDataManager().getMutedPlayers().stream().map(Bukkit::getPlayer).toList());
 
             Bukkit.getScheduler().runTask(ActionBarAnnouncements.getInstance(), new AnnouncementTask(players, message));
         }

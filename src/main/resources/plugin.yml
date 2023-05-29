@@ -2,3 +2,13 @@ name: ActionBarAnnouncements
 version: '${project.version}'
 main: me.dave.actionbarannouncements.ActionBarAnnouncements
 api-version: 1.19
+commands:
+  actionbarannouncer:
+    description: ActionBarAnnouncer umbrella command
+    usage: /actionbarannouncer
+    aliases:
+      - aa
+permissions:
+  actionbarannouncer.mute:
+    description: Allows Muting ActionBar Announcements
+    default: true

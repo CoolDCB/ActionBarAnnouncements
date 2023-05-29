@@ -1,7 +1,6 @@
 package me.dave.actionbarannouncements.runnables;
 
 import me.dave.actionbarannouncements.ActionBarAnnouncements;
-import me.dave.actionbarannouncements.runnables.IntervalTask;
 import me.dave.chatcolorhandler.ChatColorHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -14,7 +13,7 @@ public class AnnouncementRunner {
 
     public void restartAnnouncements() {
         stopAnnouncements();
-        aaTask = Bukkit.getScheduler().runTaskTimerAsynchronously(ActionBarAnnouncements.getInstance(), new IntervalTask(), 1L, 20L * ActionBarAnnouncements.getConfigManager().getInterval());
+        aaTask = Bukkit.getScheduler().runTaskTimerAsynchronously(ActionBarAnnouncements.getInstance(), new IntervalTask(), 1L, ActionBarAnnouncements.getConfigManager().getInterval());
     }
 
     public void stopAnnouncements() {

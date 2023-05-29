@@ -1,5 +1,6 @@
 package me.dave.actionbarannouncements;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,6 +16,7 @@ public class ConfigManager {
     private final HashMap<String, List<String>> worldAnnouncements= new HashMap<>();
     private boolean sendOnJoin;
     private String onJoinMessage;
+    private HashMap<String, String> langMessages = new HashMap<>();
 
 
     public ConfigManager() {
@@ -25,21 +27,27 @@ public class ConfigManager {
     }
 
     public void reloadConfig(ActionBarAnnouncements plugin) {
+        plugin.reloadConfig();
         FileConfiguration config = plugin.getConfig();
         worldAnnouncements.clear();
+        langMessages.clear();
 
         isEnabled = config.getBoolean("enabled", true);
-        randomOrder = config.getBoolean("randomOrder", false);
-        interval = config.getInt("interval", 20);
+        randomOrder = config.getBoolean("random-order", false);
+        interval = config.getInt("interval", 20) * 20;
 
         for (String world : config.getConfigurationSection("announcements").getKeys(false)) {
             worldAnnouncements.put(world, config.getStringList("announcements." + world));
         }
 
+        for (String key : config.getConfigurationSection("messages").getKeys(false)) {
+            langMessages.put(key, config.getString("messages." + key));
+        }
+
         sendOnJoin = config.getBoolean("send-on-join", false);
         onJoinMessage = config.getString("join-announcement");
 
-        ActionBarAnnouncements.getAnnouncementRunner().restartAnnouncements();
+        Bukkit.getScheduler().runTaskLater(plugin, () -> ActionBarAnnouncements.getAnnouncementRunner().restartAnnouncements(), 1);
     }
 
     public boolean isEnabled() {
@@ -72,5 +80,9 @@ public class ConfigManager {
 
     public String getJoinAnnouncement() {
         return onJoinMessage;
+    }
+
+    public String getLangMessage(String messageKey) {
+        return langMessages.get(messageKey.toLowerCase());
     }
 }
