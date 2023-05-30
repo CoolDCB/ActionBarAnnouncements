@@ -6,7 +6,7 @@ random-order: false
 interval: 20
 # Length (in seconds) that announcements will last
 duration: 3
-# Li1st of announcements
+# List of announcements
 announcements:
   # Announcements for unspecified worlds
   global:
