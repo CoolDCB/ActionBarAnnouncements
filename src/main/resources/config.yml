@@ -4,6 +4,8 @@ enabled: true
 random-order: false
 # Time (in seconds) between announcements
 interval: 20
+# Length (in seconds) of announcements
+length: 3
 # List of announcements
 announcements:
   # Announcements for unspecified worlds

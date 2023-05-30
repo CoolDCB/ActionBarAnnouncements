@@ -18,14 +18,13 @@ public class ActionBarAnnouncerCmd implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 1) {
+        if (args.length >= 1) {
             if (args[0].equalsIgnoreCase("announce")) {
                 if (!sender.hasPermission("actionbarannouncer.admin.announce")) {
                     ChatColorHandler.sendMessage(sender, ActionBarAnnouncements.getConfigManager().getLangMessage("no-permissions"));
                     return true;
                 }
-
-                ActionBarAnnouncements.getAnnouncementRunner().sendAnnouncement(new ArrayList<>(Bukkit.getOnlinePlayers()), String.join(", ", Arrays.copyOfRange(args, 1, args.length)));
+                ActionBarAnnouncements.getAnnouncementRunner().sendAnnouncement(new ArrayList<>(Bukkit.getOnlinePlayers()), String.join(" ", Arrays.copyOfRange(args, 1, args.length)));
             }
             else if (args[0].equalsIgnoreCase("mute")) {
                 if (!sender.hasPermission("actionbarannouncer.admin.mute")) {
