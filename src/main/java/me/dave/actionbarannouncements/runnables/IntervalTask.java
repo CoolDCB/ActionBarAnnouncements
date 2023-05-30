@@ -28,7 +28,7 @@ public class IntervalTask implements Runnable {
             if (players.isEmpty()) return;
             players.removeAll(ActionBarAnnouncements.getDataManager().getMutedPlayers().stream().map(Bukkit::getPlayer).toList());
 
-            Bukkit.getScheduler().runTask(ActionBarAnnouncements.getInstance(), new AnnouncementTask(players, message));
+            new AnnouncementTask(players, message, ActionBarAnnouncements.getConfigManager().getDuration()).runTaskTimer(ActionBarAnnouncements.getInstance(), 1, 10);
         }
     }
 

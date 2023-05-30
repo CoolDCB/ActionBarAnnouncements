@@ -13,6 +13,7 @@ public class ConfigManager {
     private boolean isEnabled;
     private boolean randomOrder;
     private int interval;
+    private int duration;
     private final HashMap<String, List<String>> worldAnnouncements= new HashMap<>();
     private boolean sendOnJoin;
     private String onJoinMessage;
@@ -35,6 +36,7 @@ public class ConfigManager {
         isEnabled = config.getBoolean("enabled", true);
         randomOrder = config.getBoolean("random-order", false);
         interval = config.getInt("interval", 20) * 20;
+        duration = config.getInt("duration", 3) * 2;
 
         for (String world : config.getConfigurationSection("announcements").getKeys(false)) {
             worldAnnouncements.put(world, config.getStringList("announcements." + world));
@@ -60,6 +62,10 @@ public class ConfigManager {
 
     public int getInterval() {
         return interval;
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     @NotNull
